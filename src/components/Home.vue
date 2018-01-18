@@ -1,6 +1,6 @@
 <template>
     <div>
-    <router-link to="/conf" tag="button">Edit Config</router-link>
+    <router-link to="/conf" tag="button">Edit IP Based Config</router-link>
     <table v-if="json!=null">
         <template v-for="(jsondata, user) in {'kiwiirc': json.kiwiirc, 'itsonlybinary': json.itsonlybinary}">
             <tr :key="user.id">
