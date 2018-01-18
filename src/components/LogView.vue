@@ -3,6 +3,7 @@
         <div class="log-tools">
             <router-link to="/" tag="button">Close</router-link>
             <button v-on:click="fetchLog">Reload</button>
+            <button v-on:click="openLog(repoUser, repoRef)">View Raw</button>
             <div class="log-message">{{repoUser}} / {{repoRef}}</div>
         </div>
         <textarea v-model="log" class="log-text"></textarea>
@@ -36,6 +37,9 @@ export default {
                 .then(r => r.text())
                 .then(text => { this.log = text })
                 .catch(text => { this.log = 'Error Loading Log' })
+        },
+        openLog: function (repoUser, repoRef) {
+            window.open('/logs/' + repoUser + '_' + repoRef + '.txt', '_blank')
         }
     }
 }
