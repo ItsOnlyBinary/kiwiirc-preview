@@ -13,7 +13,7 @@
                 <th>last build</th>
             </tr>
             <tr v-for="item in jsondata" :key="item.id">
-                <td :class="getStatusClass(item) + ' align-left'">{{ item.repo_ref }}</td>
+                <td :class="getStatusClass(item) + ' align-left'">{{ item.repo_ref }}{{ formatTitle(item.title) }}</td>
                 <td :class="[item.github_sha != item.hosted_sha ? 'nomatch' : '']">{{ shortenSha(item.github_sha) }}</td>
                 <td :class="[item.github_sha != item.hosted_sha ? 'nomatch' : '']" >{{ shortenSha(item.hosted_sha) }}</td>
                 <td>{{ item.build_date }}</td>
@@ -48,6 +48,18 @@ export default {
         watch: {
             // call again the method if the route changes
             '$route': 'fetchData'
+        },
+        formatTitle: function (title) {
+            let length = 30
+            if (title) {
+                if (title.length <= length) {
+                    return ' "' + title + '"'
+                }
+                title = title.substr(0, length)
+                title = title.substr(0, Math.min(title.length, title.lastIndexOf(' ')))
+                return ' "' + title + '"'
+            }
+            return null
         },
         isPullRequest: function (ref) {
             return (/^pr\d+$/.test(ref))
