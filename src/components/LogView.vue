@@ -2,11 +2,11 @@
     <div class="log-container">
         <div class="log-tools">
             <router-link to="/" tag="button">Close</router-link>
-            <button v-on:click="fetchLog">Reload</button>
-            <button v-on:click="openLog(repoUser, repoRef)">View Raw</button>
-            <div class="log-message">{{repoUser}} / {{repoRef}}</div>
+            <button @click="fetchLog">Reload</button>
+            <button @click="openLog(repoUser, repoRef)">View Raw</button>
+            <div class="log-message">{{ repoUser }} / {{ repoRef }}</div>
         </div>
-        <textarea v-model="log" class="log-text"></textarea>
+        <textarea v-model="log" class="log-text" />
     </div>
 </template>
 
@@ -16,33 +16,33 @@ export default {
     props: {
         repoUser: {
             type: String,
-            default: ''
+            default: '',
         },
         repoRef: {
             type: String,
-            default: ''
-        }
+            default: '',
+        },
     },
     data () {
         return {
-            log: ''
-        }
+            log: '',
+        };
     },
     created: function () {
-        this.fetchLog()
+        this.fetchLog();
     },
     methods: {
         fetchLog: function () {
             fetch('/logs/' + this.repoUser + '_' + this.repoRef + '.txt')
                 .then(r => r.text())
-                .then(text => { this.log = text })
-                .catch(text => { this.log = 'Error Loading Log' })
+                .then(text => { this.log = text; })
+                .catch(text => { this.log = 'Error Loading Log'; });
         },
         openLog: function (repoUser, repoRef) {
-            window.open('/logs/' + repoUser + '_' + repoRef + '.txt', '_blank')
-        }
-    }
-}
+            window.open('/logs/' + repoUser + '_' + repoRef + '.txt', '_blank');
+        },
+    },
+};
 </script>
 <style>
     .log-container {
