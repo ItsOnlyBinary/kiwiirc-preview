@@ -2,7 +2,7 @@
     <div>
         <router-link to="/conf" tag="button">Edit IP Based Config</router-link>
         <table v-if="json!=null">
-            <template v-for="(jsondata, user) in {'kiwiirc': json.kiwiirc, 'itsonlybinary': json.itsonlybinary}">
+            <template v-for="(jsondata, user) in {'kiwiirc': json.kiwiirc}">
                 <tr :key="user.id">
                     <td colspan="5" class="table-title"><a :href="'https://github.com/' + user + '/kiwiirc/'">{{ titles[user] }}</a></td>
                 </tr>
@@ -13,7 +13,7 @@
                     <th>last build</th>
                 </tr>
                 <tr v-for="item in jsondata" :key="item.id">
-                    <td :class="getStatusClass(item) + ' align-left'">{{ item.repo_ref }}{{ formatTitle(item.title) }}</td>
+                    <td :class="getStatusClass(item) + ' align-left'"><b>{{ item.repo_ref }}</b>{{ formatTitle(item.title) }}</td>
                     <td :class="[item.github_sha != item.hosted_sha ? 'nomatch' : '']">{{ shortenSha(item.github_sha) }}</td>
                     <td :class="[item.github_sha != item.hosted_sha ? 'nomatch' : '']" >{{ shortenSha(item.hosted_sha) }}</td>
                     <td>{{ item.build_date }}</td>
@@ -71,9 +71,9 @@ export default {
             return (sha != null) ? sha.substr(0, 7) : '';
         },
         getStatusClass: function (item) {
-            if (item.build_running === 1) {
+            if (item.build_running === 1 || item.build_running === '1') {
                 return 'building';
-            } else if (item.build_success === 1) {
+            } else if (item.build_success === 1 || item.build_success === '1') {
                 return 'success';
             } else {
                 return 'failed';
