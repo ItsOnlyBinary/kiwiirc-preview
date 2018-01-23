@@ -96,10 +96,10 @@ export default {
 <style>
     table {
         margin: 0 auto;
-        border-collapse:collapse;
+        border-collapse: collapse;
     }
     td, th {
-        padding:4px 10px 4px 10px;
+        padding: 4px 10px 4px 10px;
     }
     .table-title {
         font-size: 130%;

@@ -86,7 +86,7 @@ export default {
     }
     .config-text {
         box-sizing: border-box;
-        width:100%;
+        width: 100%;
         height: 100%;
         resize: none;
     }
