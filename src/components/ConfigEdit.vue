@@ -34,7 +34,7 @@ export default {
             }
 
             if (!error) {
-                fetch('/cgi-bin/save-config.pl', {
+                fetch('/cgi-bin/config-save.pl', {
                     method: 'POST',
                     headers: { 'Content-Type': 'text/plain' },
                     body: this.config,
@@ -47,7 +47,7 @@ export default {
             }
         },
         fetchConfig: function (url) {
-            fetch('/static/config.json')
+            fetch('/cgi-bin/config-get.pl?get=raw')
                 .then(r => r.text())
                 .then(text => {
                     this.config = text;
