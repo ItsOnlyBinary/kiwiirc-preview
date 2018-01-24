@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         '**': {
-            target: 'https://builds.itsonlybinary.com/',
+            target: 'https://builds.kiwiirc.com/',
             changeOrigin: true
         }
     },
