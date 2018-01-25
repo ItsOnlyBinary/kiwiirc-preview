@@ -4,8 +4,13 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import data from '@/libs/data';
+import VTooltip from 'v-tooltip';
+
+Vue.use(VTooltip);
 
 Vue.config.productionTip = false;
+
+window.app = data;
 
 /* eslint-disable no-new */
 new Vue({
